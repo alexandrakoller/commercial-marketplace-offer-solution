@@ -1,6 +1,6 @@
 {
   "offer_setup"            : {
-    "alias"    : "contoso-app",
+    "alias"    : "contoso-test",
     "testDrive": false,
     "crm"      : ""
   },
