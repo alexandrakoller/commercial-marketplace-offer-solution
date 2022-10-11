@@ -30,7 +30,7 @@ runs:
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        pip install --upgrade pip >/dev/null 2>&1 && \
+        pip install pip==22.2 >/dev/null 2>&1 && \
         pip install --upgrade \
           az-partner-center-cli${{ inputs.version }} \
           pyOpenSSL >/dev/null 2>&1 || exit 1
