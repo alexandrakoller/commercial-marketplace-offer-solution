@@ -39,5 +39,4 @@ runs:
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        azpc_response=$(azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }})
-        echo "::set-output name=response::$(echo $azpc_response)"
+        azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }}
