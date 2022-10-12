@@ -35,8 +35,8 @@ runs:
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        git clone https://github.com/microsoft/az-partner-center-cli.git
-        cd az-partner-center-cli
+        git clone https://github.com/microsoft/az-partner-center-cli.git $GITHUB_ACTION_PATH/az-partner-center-cli
+        cd $GITHUB_ACTION_PATH/az-partner-center-cli
         git checkout alexkoller/testCLIHangIssue 
         cd az-partner-center-cli
         pip install pip==21.0.1 >/dev/null 2>&1 && \
