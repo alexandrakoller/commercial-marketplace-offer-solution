@@ -35,7 +35,7 @@ runs:
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        $folder_name = "${{ github.workspace }}/az-partner-center-cli"
+        $folder_name = "$GITHUB_ACTION_PATH/az-partner-center-cli"
         mkdir -p $folder_name
         git clone https://github.com/microsoft/az-partner-center-cli.git $folder_name
         cd $folder_name
