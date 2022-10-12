@@ -25,15 +25,23 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Install Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'microsoft' 
+        java-version: '17'
     - name: Install CLI
       id: install-cli
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
+        git clone https://github.com/microsoft/az-partner-center-cli.git && \
+        cd az-partner-center-cli && \
+        git checkout alexkoller/testCLIHangIssue && \
+        cd ../ && \
         pip install pip==21.0.1 >/dev/null 2>&1 && \
-        pip install --upgrade \
-          az-partner-center-cli${{ inputs.version }} \
-          pyOpenSSL >/dev/null 2>&1 || exit 1
+        pip install -e az-partner-center-cli && \
+        pip install --upgrade pyOpenSSL >/dev/null 2>&1 || exit 1
     - name: Run command
       id: run-command
       shell: bash
