@@ -37,12 +37,12 @@ runs:
       run: |
         folder_name="${{ inputs.workingDirectory }}/az-partner-center-cli"
         mkdir -p $folder_name
-        # git clone https://github.com/microsoft/az-partner-center-cli.git $folder_name
-        # cd $folder_name
-        # git checkout alexkoller/testCLIHangIssue 
-        # pip install pip==21.0.1
-        # pip install -e . 
-        # pip install --upgrade pyOpenSSL
+        git clone https://github.com/microsoft/az-partner-center-cli.git $folder_name
+        cd $folder_name
+        git checkout alexkoller/testCLIHangIssue 
+        pip install pip==21.0.1
+        pip install -e . 
+        pip install --upgrade pyOpenSSL
     - name: Run command
       id: run-command
       shell: bash
