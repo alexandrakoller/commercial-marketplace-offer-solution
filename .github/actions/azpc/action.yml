@@ -29,7 +29,7 @@ runs:
       uses: actions/setup-java@v3
       with:
         distribution: 'microsoft' 
-        java-version: '17'
+        java-version: '8'
     - name: Install CLI
       id: install-cli
       shell: bash
