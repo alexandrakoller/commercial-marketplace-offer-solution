@@ -28,7 +28,7 @@ runs:
     - name: Install Java
       uses: actions/setup-java@v3
       with:
-        distribution: 'microsoft' 
+        distribution: 'temurin' 
         java-version: '8'
     - name: Install CLI
       id: install-cli
