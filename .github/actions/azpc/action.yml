@@ -36,6 +36,7 @@ runs:
       working-directory: ${{ inputs.workingDirectory }}
       run: |
         folder_name="${{ inputs.workingDirectory }}/az-partner-center-cli"
+        if [ -d "$folder_name" ]; then rm -rf $folder_name; fi
         mkdir -p $folder_name
         git clone https://github.com/microsoft/az-partner-center-cli.git $folder_name
         cd $folder_name
