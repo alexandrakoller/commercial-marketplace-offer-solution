@@ -44,7 +44,6 @@ runs:
         pip install pip==21.0.1
         pip install -e . 
         pip install --upgrade pyOpenSSL
-        echo "test"
     - name: Run command
       id: run-command
       shell: bash
