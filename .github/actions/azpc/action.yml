@@ -49,4 +49,4 @@ runs:
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }}
+        azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }} && azpc --help
