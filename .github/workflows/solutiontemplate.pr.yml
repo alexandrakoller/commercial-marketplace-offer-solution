@@ -1,11 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-name: Solution Template PR
+name: Solution Template with VM offer PR
 
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ main ]
 
 env:
   APPLICATION_DIRECTORY: marketplace/application/base-image-vm
