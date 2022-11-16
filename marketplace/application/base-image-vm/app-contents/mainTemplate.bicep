@@ -77,11 +77,21 @@ param _artifactsLocation string = deployment().properties.templateLink.uri
 @secure()
 param _artifactsLocationSasToken string = ''
 
+param vmOfferPublisher string = ''
+param vmOfferName string = ''
+param vmOfferPlanName string = ''
+
 var vmImage = {
-  publisher: 'MicrosoftWindowsServer'
-  offer: 'WindowsServer'
-  sku: '2019-Datacenter'
+  publisher: vmOfferPublisher
+  offer: vmOfferName
+  sku: vmOfferPlanName
   version: 'latest'
+}
+
+var vmPlan = {
+  publisher: vmOfferPublisher
+  product: vmOfferName
+  name: vmOfferPlanName
 }
 
 var ipconfName = '${vmName}-ipconf'
@@ -208,6 +218,7 @@ resource nic 'Microsoft.Network/networkInterfaces@2021-03-01' = {
 resource virtualMachine 'Microsoft.Compute/virtualMachines@2021-03-01' = {
   name: vmName
   location: location
+  plan: vmPlan
   properties: {
     hardwareProfile: {
       vmSize: vmSize
