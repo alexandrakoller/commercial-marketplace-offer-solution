@@ -55,11 +55,11 @@ jobs:
           planName: base-image-vm
           applicationDirectory: ${{ env.APPLICATION_DIRECTORY }}
         timeout-minutes: 5
-      - name: Delete offer
-        uses: ./.github/actions/commercial-marketplace
-        with:
-          azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
-          offerType: app
-          command: delete
-          applicationName: contoso-app
-        timeout-minutes: 5
+      # - name: Delete offer
+      #   uses: ./.github/actions/commercial-marketplace
+      #   with:
+      #     azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
+      #     offerType: app
+      #     command: delete
+      #     applicationName: contoso-app
+      #   timeout-minutes: 5
