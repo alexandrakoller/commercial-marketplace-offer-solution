@@ -15,7 +15,7 @@
       "microsoft-azure-marketplace.description": "Contoso App makes dev ops a breeze",
       "microsoft-azure-marketplace.offerMarketingUrlIdentifier": "contosoapp",
       "microsoft-azure-marketplace.allowedSubscriptions": [
-        "1bb6badf-d123-41a7-bda0-8a9e8d9f1b67"
+        "66cee5af-ac62-4e46-a779-feff32a4f509"
       ],
       "microsoft-azure-marketplace.usefulLinks": [
         {
@@ -99,7 +99,7 @@
         "restrictedAudience": {
           "manualEntries": [
               {
-                  "id": "1bb6badf-d123-41a7-bda0-8a9e8d9f1b67",
+                  "id": "66cee5af-ac62-4e46-a779-feff32a4f509",
                   "description": null,
                   "type": "subscriptionId"
               }
