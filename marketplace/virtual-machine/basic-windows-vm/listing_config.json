@@ -1,5 +1,5 @@
 {
-  "publisherId": "contoso",
+  "publisherId": "industry-isv-eng",
   "offerTypeId": "microsoft-azure-virtualmachines",
   "id": "contoso-vm",
   "offerTypeVersions": {
