@@ -49,6 +49,7 @@ jobs:
         with:
           azureCredentials: ${{ secrets.AZURE_CREDENTIALS }}
           vhdUri: ${{ steps.build-image.outputs.vhdUri }}
+          location: australiaeast
       - name: Set VHD URI
         shell: pwsh
         run: |
