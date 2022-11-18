@@ -1,5 +1,5 @@
 {
-  "publisherId": "industry-isv-eng",
+  "publisherId": "contoso",
   "offerTypeId": "microsoft-azure-virtualmachines",
   "id": "contoso-vm",
   "offerTypeVersions": {
@@ -15,7 +15,7 @@
       "microsoft-azure-marketplace.description": "Contoso App makes dev ops a breeze",
       "microsoft-azure-marketplace.offerMarketingUrlIdentifier": "contosoapp",
       "microsoft-azure-marketplace.allowedSubscriptions": [
-        "66cee5af-ac62-4e46-a779-feff32a4f509"
+        "59160c40-2e25-4dcf-a2fd-6514cb08bf08"
       ],
       "microsoft-azure-marketplace.usefulLinks": [
         {
@@ -63,7 +63,7 @@
         "microsoft-azure-virtualmachines.skuTitle": "Contoso App",
         "microsoft-azure-virtualmachines.skuSummary": "Contoso App makes dev ops a breeze.",
         "microsoft-azure-virtualmachines.skuDescription": "This is a description for the Contoso App that makes dev ops a breeze.",
-        "microsoft-azure-virtualmachines.hideSKUForSolutionTemplate": true,
+        "microsoft-azure-virtualmachines.hideSKUForSolutionTemplate": false,
         "microsoft-azure-virtualmachines.cloudAvailability": [
           "PublicAzure"
         ],
@@ -95,25 +95,7 @@
         },
         "regions": [
           "AZ"
-        ],
-        "restrictedAudience": {
-          "manualEntries": [
-              {
-                  "id": "66cee5af-ac62-4e46-a779-feff32a4f509",
-                  "description": null,
-                  "type": "subscriptionId"
-              }
-          ]
-        },
-        "tenantAudience": {
-          "manualEntries": [
-              {
-                  "id": "72f988bf-86f1-41af-91ab-2d7cd011db47",
-                  "description": null,
-                  "type": "tenantId"
-              }
-          ]
-        }
+        ]
       }
     ]
   },

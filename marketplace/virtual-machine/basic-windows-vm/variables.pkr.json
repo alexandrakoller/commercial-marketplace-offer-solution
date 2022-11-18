@@ -12,7 +12,7 @@
     },
     "artifact_storage_account": {
       "type": "string",
-      "default": "azmpstor"
+      "default": "mystorageacct"
     },
     "artifact_storage_account_container": {
       "type": "string",
@@ -24,11 +24,11 @@
     },
     "region": {
       "type": "string",
-      "default": "australiaeast"
+      "default": "West US"
     },
     "resource_group_name" : {
       "type": "string",
-      "default": "azmp-rg"
+      "default": "MyResourceGroup"
     },
     "temp_resource_group_name": {
       "type": "string",
