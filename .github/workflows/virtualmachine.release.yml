@@ -47,7 +47,7 @@ jobs:
         shell: pwsh
         run: |
           $vhdSasUri = ./scripts/get_vhdSasUri.ps1 -uri ${{ steps.build-image.outputs.vhdUri }}
-          $listingConfigFile = "$APPLICATION_DIRECTORY/listing_config.json"
+          $listingConfigFile = "${{ env.APPLICATION_DIRECTORY }}/listing_config.json"
           $offerListingConfigRaw = Get-Content $listingConfigFile -Raw
           $offerListingConfig = $ExecutionContext.InvokeCommand.ExpandString($offerListingConfigRaw)
           Out-File -InputObject $offerListingConfig -FilePath $listingConfigFile -Force

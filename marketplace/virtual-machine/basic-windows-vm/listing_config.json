@@ -9,7 +9,7 @@
   "definition": {
     "displayText": "contoso-vm",
     "offer": {
-      "microsoft-azure-marketplace.title": "Contoso App",
+      "microsoft-azure-marketplace.title": "Contoso Demo App",
       "microsoft-azure-marketplace.summary": "Contoso App makes dev ops a breeze",
       "microsoft-azure-marketplace.longSummary": "Contoso App makes dev ops a breeze",
       "microsoft-azure-marketplace.description": "Contoso App makes dev ops a breeze",
