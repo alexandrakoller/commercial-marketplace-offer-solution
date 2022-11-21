@@ -36,48 +36,48 @@ $location = "westus"
 $assetsFolder = Resolve-Path "../app-contents"
 $parametersFile = "parameters.json"
 
-try
-{
-    # Generate parameters
-    $parameters = Get-Content -Path "../app-contents/parameters.json.tmpl" -Raw | ConvertFrom-Json
-    $parameters.adminPassword.value = Get-Password
+# try
+# {
+# Generate parameters
+$parameters = Get-Content -Path "../app-contents/parameters.json.tmpl" -Raw | ConvertFrom-Json
+$parameters.adminPassword.value = Get-Password
 
-    # Create storate account
-    Write-Output "Deploying storage account to Azure subscription $subscriptionId..."
-    az group create --name $resourceGroup --location $location
-    az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
+# Create storate account
+Write-Output "Deploying storage account to Azure subscription $subscriptionId..."
+az group create --name $resourceGroup --location $location
+az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
 
-    Set-Location ../../../../scripts
+Set-Location ../../../../scripts
 
-    # Generate parameters.json
-    Set-Content -Path $parametersFile -Value ($parameters | ConvertTo-Json -Depth 100)
+# Generate parameters.json
+Set-Content -Path $parametersFile -Value ($parameters | ConvertTo-Json -Depth 100)
 
-    # Package and deploy the solution
-    Write-Output "Deploying resources to Azure subscription $subscriptionId..."
-    ./package.ps1 -assetsFolder $assetsFolder -releaseFolder $releaseFolder
-    ./devDeploy.ps1 -resourceGroup $resourceGroup -location $location -assetsFolder "$releaseFolder/assets" -parametersFile $parametersFile -storageAccountName $storageAccountName
+# Package and deploy the solution
+Write-Output "Deploying resources to Azure subscription $subscriptionId..."
+./package.ps1 -assetsFolder $assetsFolder -releaseFolder $releaseFolder
+./devDeploy.ps1 -resourceGroup $resourceGroup -location $location -assetsFolder "$releaseFolder/assets" -parametersFile $parametersFile -storageAccountName $storageAccountName
 
-    $deployments = az deployment group list --resource-group $resourceGroup  | ConvertFrom-Json
-    $deployments | ForEach-Object {
-        $deployment = $_
-        if ($deployment.properties.provisioningState -ne "Succeeded")
-        {
-            throw "Deployment $deployment.name failed with error: $($deployment.properties.error.details[0].message)"
-        }
+$deployments = az deployment group list --resource-group $resourceGroup  | ConvertFrom-Json
+$deployments | ForEach-Object {
+    $deployment = $_
+    if ($deployment.properties.provisioningState -ne "Succeeded")
+    {
+        throw "Deployment $deployment.name failed with error: $($deployment.properties.error.details[0].message)"
     }
 }
-catch
-{
-    Write-Error $_.Exception.Message
-    Exit 1
-}
-finally
-{
-    # Clean up
-    Write-Output "Cleaning up resources..."
-    Remove-Item -Path $parametersFile
-    Remove-Item -Path $releaseFolder -Recurse
-    az group delete --name $resourceGroup -y
+# }
+# catch
+# {
+#     Write-Error $_.Exception.Message
+#     Exit 1
+# }
+# finally
+# {
+#     # Clean up
+#     Write-Output "Cleaning up resources..."
+#     Remove-Item -Path $parametersFile
+#     Remove-Item -Path $releaseFolder -Recurse
+#     az group delete --name $resourceGroup -y
 
-    Set-Location $workingDirectory
-}
+#     Set-Location $workingDirectory
+# }
