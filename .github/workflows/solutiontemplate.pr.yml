@@ -11,7 +11,7 @@ env:
   APPLICATION_DIRECTORY: marketplace/application/base-image-vm
 
 jobs:
-  SetupDeployment:
+  ValidateARMTemplates:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,12 +29,11 @@ jobs:
           vmOfferPublisher.value: ${{ secrets.PC_PUBLISHER }}
           vmOfferName.value: ${{ secrets.PC_OFFER_NAME }}
           vmOfferPlanName.value: ${{ secrets.PC_OFFER_PLAN_NAME }}
-  ValidateARMTemplates:
-    runs-on: ubuntu-latest
-    needs: SetupDeployment
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Copy parameters file
+        shell: bash
+        working-directory: ${{ env.APPLICATION_DIRECTORY }}
+        run: |
+          cp app-contents/parameters.json app-contents/parameters.json.tmpl -f
       - name: Generate ARM template from Bicep templates
         uses: Azure/bicep-build-action@v1.0.1
         with:
