@@ -60,13 +60,13 @@
   },
   "preview_audience"       : {
     "subscriptions": [
-      "3fd33818-c87d-43ae-8c21-ef31b8898f1f"
+      "66cee5af-ac62-4e46-a779-feff32a4f509"
     ]
   },
   "technical_configuration": {
     "_note"         : "Only required for emitting metering events",
-    "tenant_id"     : "<AAD Tenant Id>",
-    "application_id": "<AAD Application ID>"
+    "tenant_id"     : "72f988bf-86f1-41af-91ab-2d7cd011db47",
+    "application_id": "d0d4ef7c-a63e-4727-ae6f-1f02b3f23755"
   },
   "plan_overview"          : {
     "base-image-vm": {
@@ -79,45 +79,12 @@
         "visibility"                 : "private",
         "azure_private_subscriptions": [
           {
-            "ID": "3fd33818-c87d-43ae-8c21-ef31b8898f1f"
+            "ID": "66cee5af-ac62-4e46-a779-feff32a4f509"
           }
         ]
       },
       "technical_configuration" : {
         "version"               : "0.0.1",
-        "allow_jit_access"      : false
-      }
-    },
-    "base-image-vm-app":{
-      "plan_listing"            : {
-        "title"              : "Base Image VM",
-        "shortDescription"  : "Short description",
-        "description"        : "<p>This is a description that uses html tags</p>"
-      },
-      "pricing_and_availability": {
-        "visibility"                 : "private",
-        "azure_private_subscriptions": [
-          {
-            "ID": "1bb6badf-d123-41a7-bda0-8a9e8d9f1b67"
-          }
-        ]
-      },
-      "technical_configuration" : {
-        "version"               : "0.0.1",
-        "allowedCustomerActions": [
-          "Microsoft.Storage/*;Microsoft.KeyVault/*;Microsoft.ManagedIdentity/*;Microsoft.Network/*;Microsoft.Resources/*;Microsoft.Compute/*;Microsoft.ContainerService/*"
-        ],
-        "allowedDataActions"    : [
-          "Microsoft.Storage/*;Microsoft.KeyVault/*;Microsoft.ManagedIdentity/*;Microsoft.Network/*;Microsoft.Resources/*;Microsoft.Compute/*;Microsoft.ContainerService/*"
-        ],
-        "tenant_id"             : "<AAD Tenant Id>",
-        "authorizations"        : [
-          {
-            "id"  : "<AAD Application ID>",
-            "role": "Owner"
-          }
-        ],
-        "policy_settings"       : [],
         "allow_jit_access"      : false
       }
     }
