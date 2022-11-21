@@ -11,7 +11,7 @@ env:
   APPLICATION_DIRECTORY: marketplace/application/base-image-vm
 
 jobs:
-  ValidateARMTemplates:
+  SetupDeployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,6 +29,12 @@ jobs:
           vmOfferPublisher.value: ${{ secrets.PC_PUBLISHER }}
           vmOfferName.value: ${{ secrets.PC_OFFER_NAME }}
           vmOfferPlanName.value: ${{ secrets.PC_OFFER_PLAN_NAME }}
+  ValidateARMTemplates:
+    runs-on: ubuntu-latest
+    needs: SetupDeployment
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Generate ARM template from Bicep templates
         uses: Azure/bicep-build-action@v1.0.1
         with:
@@ -41,6 +47,7 @@ jobs:
           armttkVersion: aka.ms/arm-ttk-latest
   RunTests:
     runs-on: windows-latest
+    needs: ValidateARMTemplates
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -61,7 +68,7 @@ jobs:
         shell: pwsh
   VerifyOfferCreation:
     runs-on: ubuntu-latest
-    needs: ValidateARMTemplates
+    needs: RunTests
     steps:
       - name: Checkout
         uses: actions/checkout@v3
