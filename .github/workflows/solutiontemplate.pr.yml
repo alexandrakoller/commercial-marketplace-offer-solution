@@ -29,11 +29,6 @@ jobs:
           vmOfferPublisher.value: ${{ secrets.PC_PUBLISHER }}
           vmOfferName.value: ${{ secrets.PC_OFFER_NAME }}
           vmOfferPlanName.value: ${{ secrets.PC_OFFER_PLAN_NAME }}
-      - name: Copy parameters file
-        shell: bash
-        working-directory: ${{ env.APPLICATION_DIRECTORY }}
-        run: |
-          cp app-contents/parameters.json app-contents/parameters.json.tmpl -f
       - name: Generate ARM template from Bicep templates
         uses: Azure/bicep-build-action@v1.0.1
         with:
