@@ -44,7 +44,7 @@ $parametersFile = "parameters.json"
 try
 {
     # Generate parameters
-    $parameters = Get-Content -Path "$assetsFolder/app-contents/parameters.json.tmpl" -Raw | ConvertFrom-Json
+    $parameters = Get-Content -Path "$assetsFolder/parameters.json.tmpl" -Raw | ConvertFrom-Json
     $parameters.adminPassword.value = Get-Password
 
     # Create storate account
