@@ -73,19 +73,21 @@ try
         # Upload scripts to storage account
         $containerName = ((Split-Path -Path $assetsFolder -Leaf) + (get-date).ToString("MMddyyhhmmss"))
         Write-Output "Uploading scripts to $containerName in storage account..."
-        az storage container create -n $containerName --connection-string $connectionString --output none
-        az storage blob upload-batch -d ($containerName) -s "." --pattern *.ps1 --connection-string $connectionString --output none
-        $containerLocation = "https://" + $storageAccountName + ".blob.core.windows.net/" + $containerName + "/"
+        $conStringLength = $connectionString.Length
+        Write-Output "Connection String has $conStringLength characters"
+        az storage container create -n $containerName --connection-string $connectionString # --output none
+        # az storage blob upload-batch -d ($containerName) -s "." --pattern *.ps1 --connection-string $connectionString --output none
+        # $containerLocation = "https://" + $storageAccountName + ".blob.core.windows.net/" + $containerName + "/"
 
-        # Generate SAS for container
-        Write-Output "Generating SAS to $containerName..."
-        $end = (Get-Date).ToUniversalTime()
-        $end = $end.AddDays(1)
-        $endsas = ($end.ToString("yyyy-MM-ddTHH:mm:ssZ"))
-        $sas = az storage container generate-sas -n $containerName --https-only --permissions r --expiry $endsas -o tsv --connection-string $connectionString
-        $sas = ("?" + $sas)
+        # # Generate SAS for container
+        # Write-Output "Generating SAS to $containerName..."
+        # $end = (Get-Date).ToUniversalTime()
+        # $end = $end.AddDays(1)
+        # $endsas = ($end.ToString("yyyy-MM-ddTHH:mm:ssZ"))
+        # $sas = az storage container generate-sas -n $containerName --https-only --permissions r --expiry $endsas -o tsv --connection-string $connectionString
+        # $sas = ("?" + $sas)
 
-        $result = az deployment group create -g $resourceGroup -f mainTemplate.json --parameters "@$parametersFilePath" --parameters location=$location _artifactsLocation=$containerLocation _artifactsLocationSasToken="""$sas"""
+        # $result = az deployment group create -g $resourceGroup -f mainTemplate.json --parameters "@$parametersFilePath" --parameters location=$location _artifactsLocation=$containerLocation _artifactsLocationSasToken="""$sas"""
     }
     else
     {
