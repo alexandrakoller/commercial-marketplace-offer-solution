@@ -58,7 +58,9 @@ $parametersFilePath = Resolve-Path $parametersFile
 
 try
 {
+    Write-Output "Storage Account Name: $storageAccountName"
     az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
+    Exit 1
 
     $connectionString = Get-ConnectionString $storageAccountName
 
