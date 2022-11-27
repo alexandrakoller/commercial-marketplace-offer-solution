@@ -59,6 +59,8 @@ $parametersFilePath = Resolve-Path $parametersFile
 
 try
 {
+    az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
+    
     $connectionString = Get-ConnectionString $storageAccountName
 
     Set-Location $assetsFolder
