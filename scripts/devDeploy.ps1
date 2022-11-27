@@ -25,7 +25,6 @@ function Get-ConnectionString {
     param (
         [String] $storageAccountName
     )
-    az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
     $connectionString = (az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json).connectionString
     return $connectionString
 }
@@ -60,7 +59,7 @@ $parametersFilePath = Resolve-Path $parametersFile
 try
 {
     az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
-    
+
     $connectionString = Get-ConnectionString $storageAccountName
 
     Set-Location $assetsFolder
