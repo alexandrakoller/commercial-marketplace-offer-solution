@@ -25,7 +25,7 @@ function Get-ConnectionString {
     param (
         [String] $storageAccountName
     )
-
+    az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
     $connectionString = (az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json).connectionString
     return $connectionString
 }
