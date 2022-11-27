@@ -60,7 +60,7 @@ try
 {
     Write-Output "Storage Account Name: $storageAccountName"
     az storage account list
-    az storage account show-connection-string --name $storageAccountName -o json | ConvertFrom-Json
+    az storage account show-connection-string --name $storageAccountName -g $resourceGroup -o json | ConvertFrom-Json
     Exit 1
 
     $connectionString = Get-ConnectionString $storageAccountName
