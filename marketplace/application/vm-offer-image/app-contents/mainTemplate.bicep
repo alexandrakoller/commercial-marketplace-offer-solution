@@ -4,7 +4,7 @@
 param location string = resourceGroup().location
 
 @description('Virtual machine size.')
-param vmSize string = 'a0-basic'
+param vmSize string = 'Standard_D2_v4'
 
 @description('Virtual machine name.')
 param vmName string = 'contosowinvm'
@@ -65,9 +65,9 @@ param publicIpRGName string = resourceGroup().name
 param outTagsByResource object = {}
 
 param vmOfferPublisher string = 'industry-isv-eng'
-param vmOfferName string = 'contoso-vm'
+param vmOfferName string = 'contoso-vm-preview'
 param vmOfferPlanName string = 'contososkuidentifier'
-param vmOfferPlanVersion string = '.0.0'
+param vmOfferPlanVersion string = '1.0.0'
 
 var vmImage = {
   publisher: vmOfferPublisher
