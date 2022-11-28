@@ -4,7 +4,7 @@
 param location string = resourceGroup().location
 
 @description('Virtual machine size.')
-param vmSize string = 'Standard_D2s_v3'
+param vmSize string = 'a0-basic'
 
 @description('Virtual machine name.')
 param vmName string = 'contosowinvm'
