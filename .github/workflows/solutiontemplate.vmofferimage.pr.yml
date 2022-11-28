@@ -55,7 +55,7 @@ jobs:
           offerType: st
           command: create
           applicationName: contoso-app
-          planName: base-image-vm
+          planName: vm-offer-image
           applicationDirectory: ${{ env.APPLICATION_DIRECTORY }}
         timeout-minutes: 5
       # - name: Delete offer
