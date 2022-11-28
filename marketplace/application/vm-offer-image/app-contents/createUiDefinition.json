@@ -48,9 +48,9 @@
         },
         "osPlatform": "Windows",
         "imageReference": {
-          "publisher": "contoso",
-          "offer": "contoso-vm",
-          "sku": "contososkuidentifier"
+          "publisher": "MicrosoftWindowsServer",
+          "offer": "WindowsServer",
+          "sku": "2019-Datacenter"
         }
       },
       {

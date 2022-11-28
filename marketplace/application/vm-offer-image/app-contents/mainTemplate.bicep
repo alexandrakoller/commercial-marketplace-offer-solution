@@ -64,15 +64,16 @@ param publicIpRGName string = resourceGroup().name
 @description('Tags by resource.')
 param outTagsByResource object = {}
 
-param vmOfferPublisher string = ''
-param vmOfferName string = ''
-param vmOfferPlanName string = ''
+param vmOfferPublisher string = 'industry-isv-eng'
+param vmOfferName string = 'contoso-vm'
+param vmOfferPlanName string = 'contososkuidentifier'
+param vmOfferPlanVersion string = '.0.0'
 
 var vmImage = {
   publisher: vmOfferPublisher
   offer: vmOfferName
   sku: vmOfferPlanName
-  version: 'latest'
+  version: vmOfferPlanVersion
 }
 
 var vmPlan = {
