@@ -53,6 +53,8 @@ try
     az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
 
     Set-Location ../../../scripts
+    Write-Output "Parameters:"
+    Write-Output $parameters
 
     # Generate parameters.json
     Set-Content -Path $parametersFile -Value ($parameters | ConvertTo-Json -Depth 100)
