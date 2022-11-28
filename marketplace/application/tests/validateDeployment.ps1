@@ -44,7 +44,9 @@ $parametersFile = "parameters.json"
 try
 {
     # Generate parameters
-    $parameters = Get-Content -Path "$assetsFolder/parameters.json.tmpl" -Raw | ConvertFrom-Json
+    $parameters = Get-Content -Path "$assetsFolder/parameters.json.tmpl" -Raw
+    Write-Output "Params: $parameters"
+    $parameters = $parameters | ConvertFrom-Json
     $parameters.adminPassword.value = Get-Password
 
     # Create storate account
@@ -53,8 +55,6 @@ try
     az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
 
     Set-Location ../../../scripts
-    Write-Output "Parameters:"
-    Write-Output $parameters
 
     # Generate parameters.json
     Set-Content -Path $parametersFile -Value ($parameters | ConvertTo-Json -Depth 100)
