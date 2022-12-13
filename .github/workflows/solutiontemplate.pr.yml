@@ -5,7 +5,7 @@ name: Solution Template PR
 on:
   workflow_dispatch:
   pull_request:
-    branches: [ $default-branch ]
+    branches: [ main ]
 
 env:
   APPLICATION_DIRECTORY: marketplace/application/base-image-vm
@@ -29,6 +29,7 @@ jobs:
           armttkVersion: aka.ms/arm-ttk-latest
   RunTests:
     runs-on: windows-latest
+    needs: ValidateARMTemplates
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -45,10 +46,11 @@ jobs:
       - name: Run Deployment tests
         run: |
           Set-Location ${{ env.TEST_DIRECTORY }}
-          ./validateDeployment.ps1
+          ./validateDeployment.ps1 "../../../${{ env.APPLICATION_DIRECTORY }}"
         shell: pwsh
   VerifyOfferCreation:
     runs-on: ubuntu-latest
+    needs: RunTests
     steps:
       - name: Checkout
         uses: actions/checkout@v3

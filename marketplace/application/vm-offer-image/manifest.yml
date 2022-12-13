@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 name               : "contoso-app"
-plan_name          : "base-image-vm"
+plan_name          : "vm-offer-image"
 app_path           : "."
 app                : "marketplacePackage.zip"
 json_listing_config: "listing_config.json"
