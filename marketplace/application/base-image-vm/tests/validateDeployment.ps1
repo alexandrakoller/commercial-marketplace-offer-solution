@@ -35,14 +35,23 @@ $location = "westus"
 
 $assetsFolder = Resolve-Path "../app-contents"
 $parametersFile = "parameters.json"
+$parameters = {}
 
 try
 {
-    # Generate parameters
-    $parameters = Get-Content -Path "../app-contents/parameters.json.tmpl" -Raw | ConvertFrom-Json
+    $parametersFilePath = Join-Path -Path $assetsFolder -ChildPath $parametersFile
+
+    if (Test-Path -Path $parametersFilePath -PathType Leaf) {
+        # Get parameters from existing file
+        $parameters = Get-Content -Path $parametersFilePath -Raw | ConvertFrom-Json
+    } else {
+        # Generate parameters
+        $parameters = Get-Content -Path "../app-contents/parameters.json.tmpl" -Raw | ConvertFrom-Json
+    }
+
     $parameters.adminPassword.value = Get-Password
 
-    # Create storate account
+    # Create storage account
     Write-Output "Deploying storage account to Azure subscription $subscriptionId..."
     az group create --name $resourceGroup --location $location
     az storage account create -n $storageAccountName -g $resourceGroup -l $location --sku Standard_LRS
