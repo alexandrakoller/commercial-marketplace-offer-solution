@@ -9,3 +9,5 @@ scripts/temp_*
 **.zip
 
 parameters.json
+
+devops-extension/commercial-marketplace-offer-management/node_modules

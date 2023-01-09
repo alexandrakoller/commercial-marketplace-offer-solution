@@ -1,0 +1,30 @@
+{
+    "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+    "id": "1e33d926-ce7d-42c1-ae54-0f7c90945502",
+    "name": "commercial-marketplace-offer-management",
+    "friendlyName": "Test Commercial Marketplace Offer Management",
+    "description": "Test Commercial Marketplace Offer Management",
+    "helpMarkDown": "",
+    "category": "Utility",
+    "author": "Microsoft Corporation",
+    "version": {
+        "Major": 0,
+        "Minor": 1,
+        "Patch": 0
+    },
+    "inputs": [
+        {
+            "name": "productConfigurationFile",
+            "type": "string",
+            "label": "Product Configuration File",
+            "defaultValue": "",
+            "required": true,
+            "helpMarkDown": "Path to product configuration file"
+        }
+    ],
+    "execution": {
+        "PowerShell3": {
+            "target": "create_offer.ps1"
+        }
+    }
+    }
