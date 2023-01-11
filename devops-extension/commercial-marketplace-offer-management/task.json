@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 7
+        "Patch": 10
     },
     "inputs": [
         {
@@ -24,7 +24,7 @@
     ],
     "execution": {
         "PowerShell3": {
-            "target": "create_offer.ps1"
+            "target": "manage_offer.ps1"
         }
     }
     }

@@ -1,10 +1,15 @@
-[CmdletBinding()]
-param()
+# Copyright (c) Microsoft Corporation.
+# Licensed under the MIT License.
 
-Trace-VstsEnteringInvocation $MyInvocation
+####################################################################################################
+# Use this script to configure a Commercial Marketplace offer using the Product Ingestion API.     #
+# This script can be used to create a new offer or update an existing offer.                       #
+####################################################################################################
 
-# Get inputs for the task
-$productConfigurationFile = Get-VstsInput -Name productConfigurationFile -Require
+Param (
+    [Parameter(Mandatory = $True, HelpMessage = "The path to the VM listing config file")]
+    [String] $productConfigurationFile
+)
 
 $baseUrl = "https://graph.microsoft.com/rp/product-ingestion"
 $configureBaseUrl = "$baseUrl/configure"
@@ -293,8 +298,7 @@ function UpdateProduct {
     {
         $resource | Add-Member -Name "product" -value $productDurableId -MemberType NoteProperty
 
-        if ($resource.'$schema'.StartsWith("https://product-ingestion.azureedge.net/schema/listing-asset/")
-            -or $resource.'$schema'.StartsWith("https://product-ingestion.azureedge.net/schema/listing-trailer/"))
+        if ($resource.'$schema'.StartsWith("https://product-ingestion.azureedge.net/schema/listing-asset/") -or $resource.'$schema'.StartsWith("https://product-ingestion.azureedge.net/schema/listing-trailer/"))
         {
             $resource | Add-Member -Name "listing" -value $productListingDurableId -MemberType NoteProperty
         }
@@ -389,8 +393,4 @@ catch
 {
     Write-Error "There was an issue configuring your product: $($_.Exception.Message)"
     Exit 1
-}
-finally
-{
-    Trace-VstsLeavingInvocation $MyInvocation
 }

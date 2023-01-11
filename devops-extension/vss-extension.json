@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "commercial-marketplace-offer-management",
     "name": "Test Commercial Marketplace Offer Management",
-    "version": "0.0.7",
+    "version": "0.0.10",
     "publisher": "industry-isv-eng",
     "targets": [
         {
