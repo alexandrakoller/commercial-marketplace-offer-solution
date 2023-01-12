@@ -330,8 +330,9 @@ if (Test-Path -Path $productConfigurationFile)
 }
 else
 {
-    Write-Error "Product configuration file not found. Please specify the path to the product configuration file."
-    Exit 1
+    $errorMesage = "Product configuration file not found. Please specify the path to the product configuration file."
+    Write-VstsTaskError -Message  $errorMesage
+    throw $errorMesage
 }
 
 try
@@ -388,9 +389,11 @@ try
             Write-Output "Plan $planExternalId updated."
         }
     }
+
+    Write-Output "Product & plans have been successfully configured."
 }
 catch
 {
-    Write-Error "There was an issue configuring your product: $($_.Exception.Message)"
+    Write-VstsTaskError -Message "There was an issue configuring your product: $($_.Exception.Message)"
     Exit 1
 }

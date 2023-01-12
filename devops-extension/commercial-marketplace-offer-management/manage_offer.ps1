@@ -10,9 +10,13 @@ $tenantId = Get-VstsInput -Name tenantId -Require
 $productConfigurationFile = Get-VstsInput -Name productConfigurationFile -Require
 $command = Get-VstsInput -Name command -Require
 
+Write-Host "Installing Azure CLI."
 $ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile .\AzureCLI.msi; Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'; rm .\AzureCLI.msi
+Write-Host "Successfully installed Azure CLI."
 
-az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
+Write-Host "Logging into Azure CLI using service principal."
+$null = az login --service-principal -u $clientId -p $clientSecret --tenant $tenantId
+Write-Host "Successfully logged into Azure CLI."
 
 if ($command -eq "configure")
 {
@@ -26,8 +30,9 @@ elseif ($command -eq "publish")
     ./publish_product.ps1 -productExternalId $productExternalId -targetType $targetType
 } else 
 {
-    # Throw error
-    Write-Error "Something went wrong"
+    Write-VstsTaskError -Message "Invalid command input."
+    Exit 1
 }
 
+Write-VstsSetResult -Result "Succeeded" -AsOutput
 Trace-VstsLeavingInvocation $MyInvocation
