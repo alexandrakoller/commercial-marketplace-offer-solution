@@ -25,19 +25,28 @@ outputs:
 runs:
   using: composite
   steps:
+    - name: Install Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin' 
+        java-version: '8'
     - name: Install CLI
       id: install-cli
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        pip install --upgrade pip >/dev/null 2>&1 && \
-        pip install --upgrade \
-          az-partner-center-cli${{ inputs.version }} \
-          pyOpenSSL >/dev/null 2>&1 || exit 1
+        folder_name="${{ inputs.workingDirectory }}/az-partner-center-cli"
+        if [ -d "$folder_name" ]; then rm -rf $folder_name; fi
+        mkdir -p $folder_name
+        git clone https://github.com/microsoft/az-partner-center-cli.git $folder_name
+        cd $folder_name
+        git checkout alexkoller/testCLIHangIssue 
+        pip install pip==21.0.1
+        pip install -e . 
+        pip install --upgrade pyOpenSSL
     - name: Run command
       id: run-command
       shell: bash
       working-directory: ${{ inputs.workingDirectory }}
       run: |
-        azpc_response=$(azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }})
-        echo "::set-output name=response::$(echo $azpc_response)"
+        azpc ${{ inputs.offerType }} ${{ inputs.command }} ${{ inputs.arguments }} && azpc --help
