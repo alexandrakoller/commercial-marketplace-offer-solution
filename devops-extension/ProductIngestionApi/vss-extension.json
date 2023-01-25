@@ -1,0 +1,49 @@
+{
+    "manifestVersion": 1,
+    "id": "ProductIngestionApi",
+    "name": "Product Ingestion API",
+    "version": "0.1.7",
+    "publisher": "industry-isv-eng",
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],    
+    "description": "",
+    "categories": [
+        "Azure Pipelines"
+    ],
+    "icons": {
+        "default": "extension-icon.png"        
+    },
+    "files": [
+        {
+            "path": "ConfigureProduct"
+        },
+        {
+            "path": "PublishProduct"
+        }
+    ],
+    "contributions": [
+        {
+            "id": "ProductIngestionApi-configure-product",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "ConfigureProduct"
+            }
+        },
+        {
+            "id": "ProductIngestionApi-publish-product",
+            "type": "ms.vss-distributed-task.task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "properties": {
+                "name": "PublishProduct"
+            }
+        }
+    ]
+}

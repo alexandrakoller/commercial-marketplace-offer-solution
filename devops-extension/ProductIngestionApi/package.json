@@ -1,0 +1,38 @@
+{
+  "name": "devops-extension",
+  "version": "1.0.0",
+  "description": "Azure DevOps Extension Tasks\r https://marketplace.visualstudio.com/items?itemName=ms-devlabs.vsts-developer-tools-build-tasks",
+  "main": "make.js",
+  "scripts": {
+    "initdev": "npm run initdev:npm",
+    "initdev:npm": "npm run initdev:npm:base & npm run initdev:npm:ProductIngestionApi",
+    "initdev:npm:base": "npm install --no-progress --no-update-notifier --legacy-peer-deps --no-fund",
+    "initdev:npm:ProductIngestionApi": "glob-exec --parallel --foreach \"BuildTasks/*/*/tsconfig.json\" -- \"cd {{file.dir}} && npm install --no-update-notifier --no-progress --legacy-peer-deps --no-fund\"",
+    "compile:ProductIngestionApi": "glob-exec \"BuildTasks/*/*/tsconfig.json\" -- \"tsc -b {{files.join(' ')}}\"",
+    "postcompile:ProductIngestionApi": "npm run lint:tasks",
+    "lint:ProductIngestionApi": "glob-exec --parallel --foreach \"BuildTasks/*/*/tsconfig.json\" -- \"eslint {{file.dir}} --parser-options \"{'project':['{{file}}','BuildTasks/tsconfig.json']}\"",
+    "package:ProductIngestionApi": "tfx extension create --root . --output-path dist --manifest-globs vss-extension.json",
+    "build": "npm run build:ProductIngestionApi",
+    "build:clean": "npm run clean && npm run initdev && npm run build",
+    "build:ProductIngestionApi": "npm run compile:ProductIngestionApi",
+    "package": "npm run build:clean && npm run package:ProductIngestionApi",
+    "clean": "git clean -fdX"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.11.18",
+    "@types/q": "^1.5.5",
+    "adm-zip": "^0.5.10",
+    "install": "^0.13.0",
+    "minimatch": "^6.0.4",
+    "minimist": "^1.2.7",
+    "semver": "^7.3.8",
+    "shelljs": "^0.8.5",
+    "sync-request": "^6.1.0",
+    "tfx-cli": "0.12.0",
+    "validator": "^13.7.0"
+  }
+}

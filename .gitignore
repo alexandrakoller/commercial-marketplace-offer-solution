@@ -10,6 +10,8 @@ scripts/temp_*
 
 parameters.json
 
-devops-extension/commercial-marketplace-offer-management/node_modules
-devops-extension/product-ingestion-api/configure-product/node_modules
-devops-extension/product-ingestion-api/publish-product/node_modules
+**.vsix
+**/node_modules
+devops-extension/ProductIngestionApi/_build
+devops-extension/ProductIngestionApi/_download
+devops-extension/ProductIngestionApi/.npmrc
